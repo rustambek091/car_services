@@ -43,32 +43,34 @@
 
 
     <!-- Topbar Start -->
+    {% for x in work %}
     <div class="container-fluid bg-light p-0">
         <div class="row gx-0 d-none d-lg-flex">
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>123 Street, New York, USA</small>
+                    <small>{{x.address}}</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center py-3">
                     <small class="far fa-clock text-primary me-2"></small>
-                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                    <small>{{x.ish_vaqti}}</small>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>+012 345 6789</small>
+                    <small>{{x.phone_number}}</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-sm-square bg-white text-primary me-1" href="{{x.facebook}}"><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-sm-square bg-white text-primary me-0" href="{{x.instagram}}"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %}
     <!-- Topbar End -->
 
 
@@ -82,19 +84,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href=" url 'home' " class="nav-item nav-link active">Home</a>
-                <a href=" url 'about' " class="nav-item nav-link">About</a>
-                <a href=" url 'services' " class="nav-item nav-link">Services</a>
+                <a href=" {% url 'home' %} " class="nav-item nav-link active">Home</a>
+                <a href=" {% url 'about' %} " class="nav-item nav-link">About</a>
+                <a href=" {% url 'services' %} " class="nav-item nav-link">Services</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a href=" url 'booking' " class="dropdown-item">Booking</a>
-                        <a href=" url 'team' " class="dropdown-item">Technicians</a>
-                        <a href=" url 'testimonial' " class="dropdown-item">Testimonial</a>
-                        <a href=" url 'tortyuztort' " class="dropdown-item">404 Page</a>
+                        <a href=" {% url 'booking' %} " class="dropdown-item">Booking</a>
+                        <a href="{% url 'team' %} " class="dropdown-item">Technicians</a>
+                        <a href=" {% url 'testimonial' %} " class="dropdown-item">Testimonial</a>
+                        <a href=" {% url 'tortyuztort' %} " class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href=" url 'contoct' " class="nav-item nav-link">Contact</a>
+                <a href=" {% url 'contact' %} " class="nav-item nav-link">Contact</a>
             </div>
             <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
@@ -293,27 +295,21 @@
                 <h6 class="text-primary text-uppercase">// Our Services //</h6>
                 <h1 class="mb-5">Explore Our Services</h1>
             </div>
+
+
             <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="col-lg-4">
-                    <div class="nav w-100 nav-pills me-4">
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                            <i class="fa fa-car-side fa-2x me-3"></i>
-                            <h4 class="m-0">Diagnostic Test</h4>
-                        </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                            <i class="fa fa-car fa-2x me-3"></i>
-                            <h4 class="m-0">Engine Servicing</h4>
-                        </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                            <i class="fa fa-cog fa-2x me-3"></i>
-                            <h4 class="m-0">Tires Replacement</h4>
-                        </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-0" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                            <i class="fa fa-oil-can fa-2x me-3"></i>
-                            <h4 class="m-0">Oil Changing</h4>
-                        </button>
-                    </div>
+                    {% for y in service %}
+                        <div class="nav w-100 nav-pills me-4">
+                            <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
+                                <i class="fa fa-car-side fa-2x me-3"></i>
+                                <h4 class="m-0">{{y.services_name}}</h4>
+                            </button>
+                        </div>
+                    {% endfor %}
                 </div>
+
+
                 <div class="col-lg-8">
                     <div class="tab-content w-100">
                         <div class="tab-pane fade show active" id="tab-pane-1">
@@ -395,7 +391,7 @@
     </div>
     <!-- Service End -->
 
-
+<!-- soon -->
     <!-- Booking Start -->
     <div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">

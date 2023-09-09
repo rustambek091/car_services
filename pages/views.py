@@ -1,62 +1,34 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView
-# from .models import *
+from .models import *
 # Create your views here.
-# index about booking contact team services testimonia tortyuztort
-class Home(TemplateView):
-    template_name = 'index.html'
 
-class About(TemplateView):
-    template_name = 'about.html'
+def Home(request):
+    work = Work_time.objects.all()
+    service = Our_services.objects.all()
+    context = {
+        'work': work,
+        'service': service,
+    }
+    return render(request, 'index.html', context)
 
-class Contact(CreateView):
-    # model = Contact
-    template_name = 'contact.html'
-    fields = "__all__"
+def About(request):
+    return render(request, 'about.html')
 
-class  Booking(ListView):
-    template_name = 'booking.html'
-class Team(TemplateView):
-    template_name = 'team.html'
-
-class Services(TemplateView):
-    template_name = 'services.html'
-
-class Testimonial(TemplateView):
-    template_name = 'testimonial.html'
-
-class tortyuztort(TemplateView):
-    template_name = 'tortyuztort.html'
+def Booking(request):
+    return render(request, 'booking.html')
     
+def Contact(request):
+    return render(request, 'contact.html')
 
-# def Team(request):
-#     tem = Team.objects.all()
-#     context = {
-#         'team':tem
-#     }
-#     return render(request, 'team.html', context)
+def Service(request):
+    return render(request, 'service.html')
 
+def Team(request):
+    return render(request, 'team.html')
 
+def Testimonial(request):
+    return render(request, 'testimonial.html')
 
-# def Service(request):
-#     servis = Service.objects.all()
-#     context = {
-#         'servis':servis
-#     }
-#     return render(request,'services.html', context)
+def Tortyuztort(request):
+    return render(request, 'tortyuztort.html')
 
-
-# def Testimonial(request):
-#     Test = Testimonial.objects.all()
-#     context = {
-#         'Testimonial':Testimonial
-#     }
-#     return render(request,'testimonial.html', context)
-
-
-# def Tortyuztort(request):
-#     tort = Tortyuztort.objects.all()
-#     context = {
-#         'Tortyuztort':Tortyuztort
-#     }
-#     return render(request,'testimonia.html', context)
